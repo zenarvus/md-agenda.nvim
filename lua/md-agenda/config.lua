@@ -5,6 +5,7 @@ config.config = {}
 config.initConfig = function(opts)
 	config.config.agendaFiles = opts.agendaFiles or {}
 	config.config.agendaViewPageItems = opts.agendaViewPageItems or 10
+	config.config.agendaViewSplitOrientation = opts.agendaViewSplitOrientation or "horizontal"
 
 	config.config.remindDeadlineInDays = opts.remindDeadlineInDays or 30
 	config.config.remindScheduledInDays = opts.remindScheduledInDays or 10
