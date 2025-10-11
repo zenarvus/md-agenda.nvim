@@ -5,15 +5,19 @@ config.config = {}
 config.initConfig = function(opts)
 	config.config.agendaFiles = opts.agendaFiles or {}
 	config.config.agendaViewPageItems = opts.agendaViewPageItems or 10
+	config.config.agendaViewSplitOrientation = opts.agendaViewSplitOrientation or "horizontal"
 
 	config.config.remindDeadlineInDays = opts.remindDeadlineInDays or 30
 	config.config.remindScheduledInDays = opts.remindScheduledInDays or 10
 
 	config.config.habitViewPastItems = opts.habitViewPastItems or 24
 	config.config.habitViewFutureItems = opts.habitViewFutureItems or 3
+	config.config.habitViewSplitOrientation = opts.habitViewSplitOrientation or "horizontal"
 	config.config.foldmarker = opts.folmarker or "{{{,}}}"
 
 	config.config.customTodoTypes = opts.customTodoTypes or {}
+
+	config.config.dashboardSplitOrientation = opts.dashboardSplitOrientation or "horizontal"
 
 	config.config.dashboard = opts.dashboard or {
 		{"All TODO Items",

@@ -347,7 +347,11 @@ agendaDashboard.renderAgendaDashboard = function()
 	--To refresh the previous buffer's content. (The buffer that is focused before the view buffer)
 	local prevBufferNum = vim.api.nvim_get_current_buf()
 
-	vim.cmd("new")
+	if config.config.dashboardSplitOrientation == "vertical" then
+		vim.cmd("vnew")
+	else
+		vim.cmd("new")
+	end
 	vim.cmd("set cursorline")
 
 	local bufNumber = vim.api.nvim_get_current_buf()
