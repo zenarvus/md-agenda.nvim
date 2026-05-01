@@ -10,9 +10,8 @@ A Markdown time and task management plugin for NeoVim, inspired by org-agenda.
 > **For the full documentation and syntax guide, please refer [here](https://github.com/zenarvus/md-agenda.nvim/wiki)**
 
 ## Showcase
-![md-agenda-agenda.png](https://zenarvus.com/media/content/md-agenda-agenda.png)
-
-![md-agenda-habits.png](https://zenarvus.com/media/content/md-agenda-habits.png)
+<img width="1366" height="768" alt="md-agenda-habits" src="https://github.com/user-attachments/assets/87b2a995-b603-40b5-b5d3-d62be871e939" />
+<img width="1366" height="768" alt="md-agenda-agenda" src="https://github.com/user-attachments/assets/f9a5a9c3-c4ff-400c-bb79-b59587f42235" />
 
 ## Installation/Configuration
 **This plugin requires [ripgrep](https://github.com/BurntSushi/ripgrep) to work!**
