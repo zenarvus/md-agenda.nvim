@@ -62,7 +62,7 @@ local function setup(opts)
 				vim.wo.foldexpr = 'v:lua.require("md-agenda.common").fold_details()'
 			elseif userFoldMethod == "syntax" then
 				-- Add syntax-based folding for logbook sections without overriding existing syntax
-				vim.cmd('syntax region logbookFold start="<details logbook>" end="</details>" transparent fold')
+				vim.cmd([[syntax region logbookFold start="<details logbook>" end="</details>" transparent fold keepend containedin=ALL]])
 				vim.cmd('syntax sync fromstart')
 			end
 			-- Keep original marker-based folding, no changes needed

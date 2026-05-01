@@ -636,22 +636,22 @@ common.getAgendaItems = function(detailLevel)
 end
 
 
-----------------FOLD LOGBOOK DETAILS FOR EXPR/SYNTAX----------------
+----------------FOLD LOGBOOK DETAILS FOR EXPRESSION FOLDING----------------
 common.fold_details = function()
 	local line = vim.fn.getline(vim.v.lnum)
 	if string.match(line, "<details logbook>") then
 		vim.b.insideLogbook = true
-		return 1
+		return ">1"
 	elseif string.match(line, "</details>") then
 		vim.b.insideLogbook = false
-		return 1
+		return "<1"
 	end
 
 	if vim.b.insideLogbook then
 		return 1
 	end
 
-	return 0
+	return "="
 end
 
 return common
