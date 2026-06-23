@@ -31,19 +31,30 @@ config.initConfig = function(opts)
 	}
 
 	config.config.tagColor = opts.tagColor or "gray"
+	config.config.tagColorBg = opts.tagColorBg
 	config.config.titleColor = opts.titleColor or "yellow"
+	config.config.titleColorBg = opts.titleColorBg
 
 	config.config.todoTypeColor = opts.todoTypeColor or "cyan"
+	config.config.todoTypeColorBg = opts.todoTypeColorBg
 	config.config.habitTypeColor = opts.habitTypeColor or "lightblue"
+	config.config.habitTypeColorBg = opts.habitTypeColorBg
 	config.config.infoTypeColor = opts.infoTypeColor or "lightgreen"
+	config.config.infoTypeColorBg = opts.infoTypeColorBg
 	config.config.dueTypeColor = opts.dueTypeColor or "red"
+	config.config.dueTypeColorBg = opts.dueTypeColorBg
 	config.config.doneTypeColor = opts.doneTypeColor or "green"
+	config.config.doneTypeColorBg = opts.doneTypeColorBg
 	config.config.cancelledTypeColor = opts.cancelledTypeColor or "red"
+	config.config.cancelledTypeColorBg = opts.cancelledTypeColorBg
 
 	config.config.completionColor = opts.completionColor or "lightgreen"
+	config.config.completionColorBg = opts.completionColorBg
 
 	config.config.scheduledTimeColor = opts.scheduledTimeColor or "cyan"
+	config.config.scheduledTimeColorBg = opts.scheduledTimeColorBg
 	config.config.deadlineTimeColor = opts.deadlineTimeColor or "red"
+	config.config.deadlineTimeColorBg = opts.deadlineTimeColorBg
 
 	config.config.habitScheduledColor = opts.habitScheduledColor or "yellow"
 	config.config.habitDoneColor = opts.habitDoneColor or "green"

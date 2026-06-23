@@ -4,6 +4,7 @@ local common = require("md-agenda.common")
 
 local taskAction = require("md-agenda.checkTask")
 local updateProgress = require("md-agenda.updateProgress")
+local color = require("md-agenda.color")
 
 local vim = vim
 
@@ -335,45 +336,45 @@ local function renderAgendaView()
 
 	local bufNumber = vim.api.nvim_get_current_buf()
 
-	vim.cmd("highlight date guifg="..config.config.titleColor.." ctermfg="..config.config.titleColor)
+	color.set_highlight("date", config.config.titleColor, config.config.titleColorBg)
 	vim.cmd("syntax match date /^- .*$/")
 
-	vim.cmd("highlight todo guifg="..config.config.todoTypeColor.." ctermfg="..config.config.todoTypeColor)
+	color.set_highlight("todo", config.config.todoTypeColor, config.config.todoTypeColorBg)
 	vim.cmd("syntax match todo /TODO/")
 
-	vim.cmd("highlight habit guifg="..config.config.habitTypeColor.." ctermfg="..config.config.habitTypeColor)
+	color.set_highlight("habit", config.config.habitTypeColor, config.config.habitTypeColorBg)
 	vim.cmd("syntax match habit /HABIT/")
 
-	vim.cmd("highlight due guifg="..config.config.dueTypeColor.." ctermfg="..config.config.dueTypeColor)
+	color.set_highlight("due", config.config.dueTypeColor, config.config.dueTypeColorBg)
 	vim.cmd("syntax match due /DUE/")
 
-	vim.cmd("highlight done guifg="..config.config.doneTypeColor.." ctermfg="..config.config.doneTypeColor)
+	color.set_highlight("done", config.config.doneTypeColor, config.config.doneTypeColorBg)
 	vim.cmd("syntax match done /DONE/")
 
-	vim.cmd("highlight info guifg="..config.config.infoTypeColor.." ctermfg="..config.config.infoTypeColor)
+	color.set_highlight("info", config.config.infoTypeColor, config.config.infoTypeColorBg)
 	vim.cmd("syntax match info /INFO/")
 
-	vim.cmd("highlight completionColor guifg="..config.config.completionColor.." ctermfg="..config.config.completionColor)
+	color.set_highlight("completionColor", config.config.completionColor, config.config.completionColorBg)
 	vim.cmd("syntax match completionColor /Completion:/")
 	vim.cmd("syntax match completionColor /Repeat:/")
 
-	vim.cmd("highlight deadline guifg="..config.config.deadlineTimeColor.." ctermfg="..config.config.deadlineTimeColor)
+	color.set_highlight("deadline", config.config.deadlineTimeColor, config.config.deadlineTimeColorBg)
 	vim.cmd("syntax match deadline /Deadline:/")
 	vim.cmd("syntax match deadline /(DL: \\+.*)/")
 
-	vim.cmd("highlight cancelledTask guifg="..config.config.cancelledTypeColor.." ctermfg="..config.config.cancelledTypeColor)
+	color.set_highlight("cancelledTask", config.config.cancelledTypeColor, config.config.cancelledTypeColorBg)
 	vim.cmd("syntax match cancelledTask /CANCELLED/")
 
-	vim.cmd("highlight scheduled guifg="..config.config.scheduledTimeColor.." ctermfg="..config.config.scheduledTimeColor)
+	color.set_highlight("scheduled", config.config.scheduledTimeColor, config.config.scheduledTimeColorBg)
 	vim.cmd("syntax match scheduled /Scheduled:/")
 	vim.cmd("syntax match scheduled /(SC: \\+.*)/")
 
-	vim.cmd("highlight tag guifg="..config.config.tagColor.." ctermfg="..config.config.tagColor)
+	color.set_highlight("tag", config.config.tagColor, config.config.tagColorBg)
 	vim.cmd("syntax match tag /\\#[a-zA-Z0-9]\\+/")
 	vim.cmd("syntax match tag /:[a-zA-Z0-9:]\\+:/")
 
 	for customType, itsColor in pairs(config.config.customTodoTypes) do
-		vim.cmd("highlight "..customType.." guifg="..itsColor.." ctermfg="..itsColor)
+		color.set_highlight(customType, itsColor)
 		vim.cmd("syntax match "..customType.." /"..customType.."/")
 	end
 
@@ -449,6 +450,8 @@ local function renderAgendaView()
 	end, { buffer = bufNumber, noremap = true, silent = true })
 
 	vim.keymap.set('n', '<Esc>', function()vim.cmd('bd')
+	end, { buffer = bufNumber, noremap = true, silent = true })
+	vim.keymap.set('n', 'q', function()vim.cmd('bd')
 	end, { buffer = bufNumber, noremap = true, silent = true })
 
 	--Go to the task

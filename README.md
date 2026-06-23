@@ -55,7 +55,6 @@ A Markdown time and task management plugin for NeoVim, inspired by org-agenda.
 
             -- Custom types that you can use instead of TODO.
             -- Default: {}
-            -- The plugin will give an error if you use RGB colors (e.g. #ffffff)
             customTodoTypes={SOMEDAY="magenta"}, -- A map of item type and its color
 
             -- "vertical" or "horizontal"
@@ -86,19 +85,19 @@ A Markdown time and task management plugin for NeoVim, inspired by org-agenda.
             },
 
             -- Optional: Change agenda colors.
-            tagColor = "blue",
-            titleColor = "yellow",
+            tagColor = "blue", tagColorBg = "black",
+            titleColor = "yellow", titleColorBg = "black",
 
-            todoTypeColor = "cyan",
-            habitTypeColor = "cyan",
-            infoTypeColor = "lightgreen",
-            dueTypeColor = "red",
-            doneTypeColor = "green",
-            cancelledTypeColor = "red",
+            todoTypeColor = "cyan", todoTypeColorBg = "black",
+            habitTypeColor = "cyan", habitTypeColorBg = "black",
+            infoTypeColor = "lightgreen", infoTypeColorBg = "black",
+            dueTypeColor = "red", dueTypeColorBg = "black",
+            doneTypeColor = "green", doneTypeColorBg = "black",
+            cancelledTypeColor = "red", cancelledTypeColorBg = "black",
 
-            completionColor = "lightgreen",
-            scheduledTimeColor = "cyan",
-            deadlineTimeColor = "red",
+            completionColor = "lightgreen", completionColorBg = "black",
+            scheduledTimeColor = "cyan", scheduledTimeColorBg = "black",
+            deadlineTimeColor = "red", deadlineTimeColorBg = "black",
 
             habitScheduledColor = "yellow",
             habitDoneColor = "green",

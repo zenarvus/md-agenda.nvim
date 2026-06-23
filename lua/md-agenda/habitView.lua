@@ -4,6 +4,7 @@ local common = require("md-agenda.common")
 
 local taskAction = require("md-agenda.checkTask")
 local updateProgress = require("md-agenda.updateProgress")
+local color = require("md-agenda.color")
 
 local vim = vim
 
@@ -134,31 +135,32 @@ habitView.renderHabitView = function()
 
 	local bufNumber = vim.api.nvim_get_current_buf()
 
-	vim.cmd("highlight progressmade guibg="..config.config.habitProgressColor.." ctermbg="..config.config.habitProgressColor.." guifg="..config.config.habitProgressColor.." ctermfg="..config.config.habitProgressColor)
+	color.set_highlight("progressmade", config.config.habitProgressColor, config.config.habitProgressColor)
 	vim.cmd("syntax match progressmade /¤/")
 
-	vim.cmd("highlight mustdone guibg="..config.config.habitScheduledColor.." ctermbg="..config.config.habitScheduledColor.." guifg="..config.config.habitScheduledColor.." ctermfg="..config.config.habitScheduledColor)
+	color.set_highlight("mustdone", config.config.habitScheduledColor, config.config.habitScheduledColor)
 	vim.cmd("syntax match mustdone /♁/")
 
-	vim.cmd("highlight pastscheduled guibg="..config.config.habitPastScheduledColor.." ctermbg="..config.config.habitPastScheduledColor.." guifg="..config.config.habitPastScheduledColor.." ctermfg="..config.config.habitPastScheduledColor)
+	color.set_highlight("pastscheduled", config.config.habitPastScheduledColor, config.config.habitPastScheduledColor)
 	vim.cmd("syntax match pastscheduled /⚨/")
 
-	vim.cmd("highlight habitdone guibg="..config.config.habitDoneColor.." ctermbg="..config.config.habitDoneColor.." guifg="..config.config.habitDoneColor.." ctermfg="..config.config.habitDoneColor)
+	color.set_highlight("habitdone", config.config.habitDoneColor, config.config.habitDoneColor)
 	vim.cmd("syntax match habitdone /⊹/")
 
-	vim.cmd("highlight notdone guibg="..config.config.habitNotDoneColor.." ctermbg="..config.config.habitNotDoneColor.." guifg="..config.config.habitNotDoneColor.." ctermfg="..config.config.habitNotDoneColor)
+	color.set_highlight("notdone", config.config.habitNotDoneColor, config.config.habitNotDoneColor)
 	vim.cmd("syntax match notdone /ø/")
 
-	vim.cmd("highlight end guibg="..config.config.habitDeadlineColor.." ctermbg="..config.config.habitDeadlineColor.." guifg="..config.config.habitDeadlineColor.." ctermfg="..config.config.habitDeadlineColor)
+	color.set_highlight("end", config.config.habitDeadlineColor, config.config.habitDeadlineColor)
 	vim.cmd("syntax match end /♆/")
 
-	vim.cmd("highlight noneed guibg="..config.config.habitFreeTimeColor.." ctermbg="..config.config.habitFreeTimeColor.." guifg="..config.config.habitFreeTimeColor.." ctermfg="..config.config.habitFreeTimeColor)
+	color.set_highlight("noneed", config.config.habitFreeTimeColor, config.config.habitFreeTimeColor)
 	vim.cmd("syntax match noneed /⍣/")
 
+	-- TODO: Also fix that
 	vim.cmd("highlight today guibg=brown ctermbg=brown guifg=brown ctermfg=brown")
 	vim.cmd("syntax match today /♅/")
 
-	vim.cmd("highlight tag guifg="..config.config.tagColor.." ctermfg="..config.config.tagColor)
+	color.set_highlight("end", config.config.tagColor, config.config.tagColorBg)
 	vim.cmd("syntax match tag /\\#[a-zA-Z0-9]\\+/")
 	vim.cmd("syntax match tag /:[a-zA-Z0-9:]\\+:/")
 
@@ -203,6 +205,8 @@ habitView.renderHabitView = function()
 	vim.api.nvim_buf_set_option(bufNumber, "modified", false)
 
 	vim.keymap.set('n', '<Esc>', function()vim.cmd('bd')
+	end, { buffer = bufNumber, noremap = true, silent = true })
+	vim.keymap.set('n', 'q', function()vim.cmd('bd')
 	end, { buffer = bufNumber, noremap = true, silent = true })
 
 	--Go to the task
@@ -264,7 +268,7 @@ habitView.renderHabitView = function()
 			vim.cmd('bd')
 			habitView.renderHabitView()
 		else
-			print("To check an item, place your cursor to the agenda item and rerun this command.")
+			print("To cancel an item, place your cursor to the agenda item and rerun this command.")
 		end
 	end, {})
 end
