@@ -183,6 +183,8 @@ local function renderDateSelector(filepath, insertType, bufferRefreshNum)
 
 	vim.keymap.set('n', '<Esc>', function()vim.cmd('bd')
 	end, { buffer = bufNumber, noremap = true, silent = true })
+	vim.keymap.set('n', 'q', function()vim.cmd('bd')
+	end, { buffer = bufNumber, noremap = true, silent = true })
 end
 
 insertDate.dateSelector = function(filepath, insertType, bufferRefreshNum)
