@@ -1,6 +1,7 @@
 local common = require("md-agenda.common")
 
 local config = require("md-agenda.config")
+local color = require("md-agenda.color")
 
 local vim = vim
 
@@ -66,7 +67,7 @@ local function renderDateSelector(filepath, insertType, bufferRefreshNum)
 
 	local bufNumber = vim.api.nvim_get_current_buf()
 
-	vim.cmd("highlight bufTitle guifg="..config.config.titleColor.." ctermfg="..config.config.titleColor)
+	color.set_highlight("bufTitle", config.config.titleColor, config.config.titleColorBg)
 	vim.cmd("syntax match bufTitle /^- .*$/")
 
 	local renderLines = {}

@@ -4,6 +4,7 @@ local function setup(opts)
 	local config = require("md-agenda.config").initConfig(opts)
 
 	local common = require("md-agenda.common")
+	local color = require("md-agenda.color")
 
 	local insertDate = require("md-agenda.insertDate")
 	local checkTask = require("md-agenda.checkTask")
@@ -59,7 +60,7 @@ local function setup(opts)
 
 			-- Apply custom folding based on user's existing foldmethod
 			if userFoldMethod == "expr" then
-				vim.wo.foldexpr = 'v:lua.require("md-agenda.common").fold_details()'
+				vim.opt_local.foldexpr = 'v:lua.require("md-agenda.common").fold_details()'
 			elseif userFoldMethod == "syntax" then
 				-- Add syntax-based folding for logbook sections without overriding existing syntax
 				vim.cmd([[syntax region logbookFold start="<details logbook>" end="</details>" transparent fold keepend containedin=ALL]])
@@ -93,30 +94,30 @@ local function setup(opts)
 			end, {})
 
 			--Re-highlight for the markdown files
-			vim.cmd("highlight todoType guifg="..config.config.todoTypeColor.." ctermfg="..config.config.todoTypeColor)
+			color.set_highlight("todoType", config.config.todoTypeColor, config.config.todoTypeColorBg)
 			vim.cmd("call matchadd('todoType', 'TODO')")
 
-			vim.cmd("highlight habitType guifg="..config.config.habitTypeColor.." ctermfg="..config.config.habitTypeColor)
+			color.set_highlight("habitType", config.config.habitTypeColor, config.config.habitTypeColorBg)
 			vim.cmd("call matchadd('habitType','HABIT')")
 
-			vim.cmd("highlight dueType guifg="..config.config.dueTypeColor.." ctermfg="..config.config.dueTypeColor)
+			color.set_highlight("dueType", config.config.dueTypeColor, config.config.dueTypeColorBg)
 			vim.cmd("call matchadd('dueType','DUE')")
 
-			vim.cmd("highlight doneType guifg="..config.config.doneTypeColor.." ctermfg="..config.config.doneTypeColor)
+			color.set_highlight("doneType", config.config.doneTypeColor, config.config.doneTypeColorBg)
 			vim.cmd("call matchadd('doneType','DONE')")
 
-			vim.cmd("highlight infoType guifg="..config.config.infoTypeColor.." ctermfg="..config.config.infoTypeColor)
+			color.set_highlight("infoType", config.config.infoTypeColor, config.config.infoTypeColorBg)
 			vim.cmd("call matchadd('infoType','INFO')")
 
-			vim.cmd("highlight cancelledTask guifg="..config.config.cancelledTypeColor.." ctermfg="..config.config.cancelledTypeColor)
+			color.set_highlight("cancelledTask", config.config.cancelledTypeColor, config.config.cancelledTypeColorBg)
 			vim.cmd("call matchadd('cancelledTask','CANCELLED')")
 
-			vim.cmd("highlight tag guifg="..config.config.tagColor.." ctermfg="..config.config.tagColor)
+			color.set_highlight("tag", config.config.tagColor, config.config.tagColorBg)
 			vim.cmd("call matchadd('tag','\\#[a-zA-Z0-9]\\+')")
 			vim.cmd("call matchadd('tag',':[a-zA-Z0-9:]\\+:')")
 
 			for customType, itsColor in pairs(config.config.customTodoTypes) do
-				vim.cmd("highlight "..customType.." guifg="..itsColor.." ctermfg="..itsColor)
+				color.set_highlight(customType, itsColor)
 				vim.cmd("call matchadd('"..customType.."', '"..customType.."')")
 			end
 		end,
