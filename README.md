@@ -41,6 +41,8 @@ A Markdown time and task management plugin for NeoVim, inspired by org-agenda.
             -- Default: "horizontal"
             agendaViewSplitOrientation="horizontal",
 
+            logbookFolding=true, -- Enable/disable custom logbook "expr" and "syntax" folding.
+
             -----
             
             -- Number of past days to show in the habit view.

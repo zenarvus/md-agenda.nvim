@@ -17,14 +17,6 @@ common.getMapItemCount = function(map)
 	return count
 end
 
-common.splitFoldmarkerString = function()
-	local result = {}
-	for item in string.gmatch(config.config.foldmarker, "([^,]+)") do
-		table.insert(result, item)
-	end
-	return result
-end
-
 common.isTodoItem = function(itemType)
 	if itemType == "TODO" then
 		return true

@@ -55,19 +55,21 @@ local function setup(opts)
 		pattern = "markdown",
 		callback = function()
 
-			-- Save user's original foldmethod setting
-			local userFoldMethod = vim.o.foldmethod
+			if config.config.logbookFolding == true then
+				-- Save user's original foldmethod setting
+				local userFoldMethod = vim.o.foldmethod
 
-			-- Apply custom folding based on user's existing foldmethod
-			if userFoldMethod == "expr" then
-				vim.opt_local.foldexpr = 'v:lua.require("md-agenda.common").fold_details()'
-			elseif userFoldMethod == "syntax" then
-				-- Add syntax-based folding for logbook sections without overriding existing syntax
-				vim.cmd([[syntax region logbookFold start="<details logbook>" end="</details>" transparent fold keepend containedin=ALL]])
-				vim.cmd('syntax sync fromstart')
+				-- Apply custom folding based on user's existing foldmethod
+				if userFoldMethod == "expr" then
+					vim.opt_local.foldexpr = 'v:lua.require("md-agenda.common").fold_details()'
+				elseif userFoldMethod == "syntax" then
+					-- Add syntax-based folding for logbook sections without overriding existing syntax
+					vim.cmd([[syntax region logbookFold start="<details logbook>" end="</details>" transparent fold keepend containedin=ALL]])
+					vim.cmd('syntax sync fromstart')
+				end
+				-- Keep original marker-based folding, no changes needed
+				-- Keep original indent folding, no changes needed
 			end
-			-- Keep original marker-based folding, no changes needed
-			-- Keep original indent folding, no changes needed
 
 			--Check Task -- (Modify the current buffer and the current line in markdown documents. This changes in the view buffers.)
 			vim.api.nvim_buf_create_user_command(0, 'CheckTask', function()
