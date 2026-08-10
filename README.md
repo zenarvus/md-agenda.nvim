@@ -1,3 +1,5 @@
+
+
 # md-agenda.nvim
 ![GitHub stars](https://img.shields.io/github/stars/zenarvus/md-agenda.nvim?style=flat-square)
 ![Forks](https://img.shields.io/github/forks/zenarvus/md-agenda.nvim?style=flat-square)
@@ -25,6 +27,7 @@ A Markdown time and task management plugin for NeoVim, inspired by org-agenda.
             agendaFiles = {
                 "~/notes/agenda.md", "~/notes/habits.md", -- Single Files
                 "~/notes/agendafiles/", -- Folders
+                -- "~/notes/specialDays/", -- Optional: Include the repo's bundled specialDays/ folder for holidays/events
             },
 
             --- OPTIONAL ---
