@@ -358,7 +358,7 @@ agendaDashboard.renderAgendaDashboard = function()
 	local bufNumber = vim.api.nvim_get_current_buf()
 
 	vim.api.nvim_buf_set_option(bufNumber, "filetype", "md-agenda") -- Change filetype to md-agenda
-	vim.api.nvim_buf_set_name(bufNumber, "AgendaDashboard")
+	--vim.api.nvim_buf_set_name(bufNumber, "AgendaDashboard")
 
 	color.set_highlight("date", config.config.titleColor, config.config.titleColorBg)
 	vim.cmd("syntax match date /^- .*$/")
